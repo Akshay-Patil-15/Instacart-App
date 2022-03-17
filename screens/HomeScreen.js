@@ -20,8 +20,28 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-
+import mysql from "mysql";
 export default function HomeScreen({ navigation }) {
+  const connection = mysql.createPool({
+    host: "proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com", // Your connection adress (localhost).
+    user: "admin", // Your database's username.
+    password: "rdsadminPASS", // Your database's password.
+    database: "proj1_db", // Your database's name.
+  });
+  function handlePress() {
+    connection.getConnection(function (err, connection) {
+      console.log("connected", connection);
+      connection.query(
+        "SELECT * FROM company",
+        function (error, results, fields) {
+          if (error) throw error;
+
+          console.log(results);
+        }
+      );
+    });
+    //  navigation.navigate("MainScreen")
+  }
   return (
     <View style={styles.container}>
       <View style={styles.title}>
@@ -47,7 +67,7 @@ export default function HomeScreen({ navigation }) {
       </View>
       <View style={styles.button}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("MainScreen")}
+          onPress={handlePress}
           // style={styles.button}
         >
           <Text style={styles.buttonText}>Start</Text>
