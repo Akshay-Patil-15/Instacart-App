@@ -26,28 +26,6 @@ import ResultScreen from "./screens/ResultScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import MyStack from "./navigation/navigation";
 
-/*
-const ​connection​ ​=​ ​mysql​.​createPool​(​{ 
-  ​host​: ​"proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com"​,​ ​// Your connection adress (localhost). 
- ​  ​user​: ​"admin"​,​ ​// Your database's username. 
- ​  ​password​: ​"rdsadminPASS"​,​ ​// Your database's password. 
- ​  ​database​: ​"proj1_db"​,​ ​// Your database's name. 
- ​}​)​;
-
- connection​.​getConnection​(​function​ ​(​err​,​ ​connection​)​ ​{ 
-  ​    ​// Executing the MySQL query (select all data from the 'users' table). 
-  ​    ​connection​.​query​( 
-  ​      ​"SELECT * FROM company"​, 
-  ​      ​function​ ​(​error​,​ ​results​,​ ​fields​)​ ​{ 
-  ​        ​// If some error occurs, we throw an error. 
-  ​        ​if​ ​(​error​)​ ​throw​ ​error​; 
-   
-  ​        ​// Getting the 'response' from the database and sending it to our route. This is were the data is. 
-  ​        ​res​.​send​(​results​)​; 
-  ​      ​} 
-  ​    ​)​; 
-  ​  ​}​)​;
-*/
 export default function App() {
   const buttonClickedHandler = () => {
     console.log("You have been clicked a button!");
