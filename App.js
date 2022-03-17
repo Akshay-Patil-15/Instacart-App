@@ -3,7 +3,9 @@
 //useDimensions,
 //useDeviceOrientation,
 //} from "@react-native-community/hooks";
-import { range } from "express/lib/request";
+//import { range } from "express/lib/request";
+//import mysql from "mysql";
+
 import {
   StyleSheet,
   Text,
@@ -18,8 +20,13 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import MainScreen from "./screens/MainScreen";
+import ResultScreen from "./screens/ResultScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import MyStack from "./navigation/navigation";
 
-
+/*
 const ​connection​ ​=​ ​mysql​.​createPool​(​{ 
   ​host​: ​"proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com"​,​ ​// Your connection adress (localhost). 
  ​  ​user​: ​"admin"​,​ ​// Your database's username. 
@@ -40,7 +47,7 @@ const ​connection​ ​=​ ​mysql​.​createPool​(​{
   ​      ​} 
   ​    ​)​; 
   ​  ​}​)​;
-
+*/
 export default function App() {
   const buttonClickedHandler = () => {
     console.log("You have been clicked a button!");
@@ -50,7 +57,13 @@ export default function App() {
   return (
     <>
       <View style={styles.container}>
-        <ImageBackground
+        <NavigationContainer>
+          <MyStack></MyStack>
+        </NavigationContainer>
+        {/* <HomeScreen></HomeScreen> */}
+        {/* <MainScreen></MainScreen> */}
+        {/* <ResultScreen></ResultScreen> */}
+        {/* <ImageBackground
           style={styles.imgBackground}
           resizeMode="cover"
           source={{
@@ -85,10 +98,13 @@ export default function App() {
                 title={"Find record"}
                 color={"orange"}
                 style={styles.buttonContainer}
+                onPress={() => {
+                  console.log("Query executed!");
+                }}
               />
             </View>
           </View>
-        </ImageBackground>
+        </ImageBackground> */}
       </View>
     </>
   );
@@ -156,10 +172,3 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
   },
 });
-
-
-
-
-
-
-
