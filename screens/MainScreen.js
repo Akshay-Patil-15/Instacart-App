@@ -33,7 +33,7 @@ export default function MainScreen({
   //const [result, setResult] = useState([]);
 
   function fetch_results() {
-    fetch("http://127.0.0.1:5001/api/fetch_results", {
+    fetch("https://44.202.242.164:5001/api/fetch_results", {
       method: "POST",
       cache: "no-cache",
       headers: {

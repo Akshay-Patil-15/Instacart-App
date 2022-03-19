@@ -61,4 +61,4 @@ def setSession():
     else:
         return jsonify({'status': 'Done', 'result': result, 'fields': fields, 'time': round(end_time - start_time, 4)})
 
-app.run(debug = False, port = 5001)
+app.run(debug = False, port = 5001, host='0.0.0.0')
