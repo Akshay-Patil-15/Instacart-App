@@ -5,6 +5,7 @@
 //} from "@react-native-community/hooks";
 //import { range } from "express/lib/request";
 //import mysql from "mysql";
+import React from "react";
 
 import {
   StyleSheet,
@@ -20,7 +21,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import mysql from "mysql";
+//import mysql from "mysql";
 export default function HomeScreen({ navigation }) {
   // const connection = mysql.createPool({
   //   host: "proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com", // Your connection adress (localhost).
@@ -66,7 +67,8 @@ export default function HomeScreen({ navigation }) {
       </View>
       <View style={styles.button}>
         <TouchableOpacity
-          onPress={handlePress}
+          //onPress={handlePress}
+          onPress={() => navigation.navigate("MainScreen")}
           // style={styles.button}
         >
           <Text style={styles.buttonText}>Start</Text>

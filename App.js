@@ -5,6 +5,7 @@
 //} from "@react-native-community/hooks";
 //import { range } from "express/lib/request";
 //import mysql from "mysql";
+import React from "react";
 
 import {
   StyleSheet,
@@ -25,18 +26,29 @@ import MainScreen from "./screens/MainScreen";
 import ResultScreen from "./screens/ResultScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import MyStack from "./navigation/navigation";
+import { useState } from "react";
 
 export default function App() {
   const buttonClickedHandler = () => {
     console.log("You have been clicked a button!");
     // do something
   };
+  const [result, setResult] = useState([]);
+  const [fields, setFields] = useState([]);
+  const [time, setTime] = useState("");
 
   return (
     <>
       <View style={styles.container}>
         <NavigationContainer>
-          <MyStack></MyStack>
+          <MyStack
+            result={result}
+            fields={fields}
+            time={time}
+            setResult={setResult}
+            setFields={setFields}
+            setTime={setTime}
+          ></MyStack>
         </NavigationContainer>
         {/* <HomeScreen></HomeScreen> */}
         {/* <MainScreen></MainScreen> */}

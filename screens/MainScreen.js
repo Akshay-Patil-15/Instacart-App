@@ -5,6 +5,7 @@
 //} from "@react-native-community/hooks";
 //import { range } from "express/lib/request";
 //import mysql from "mysql";
+import React, { useState } from "react";
 
 import {
   StyleSheet,
@@ -21,16 +22,53 @@ import {
   ImageBackground,
 } from "react-native";
 
-export default function MainScreen({ navigation }) {
+export default function MainScreen({
+  navigation,
+  setResult,
+  setFields,
+  setTime,
+}) {
+  const [database, setDatabase] = useState("");
+  const [query, setquery] = useState("");
+  //const [result, setResult] = useState([]);
+
+  function fetch_results() {
+    fetch("http://127.0.0.1:5001/api/fetch_results", {
+      method: "POST",
+      cache: "no-cache",
+      headers: {
+        content_type: "application/json",
+      },
+      body: JSON.stringify({ query: query, database: database }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        if (json.status === "Done") {
+          console.log("Connected to Amazon RDS", json.result);
+          setResult(json.result);
+          setFields(json.fields);
+          setTime(json.time);
+          navigation.navigate("ResultScreen");
+          //setUserID(user)
+          //history.push('/auth/main');
+        }
+      });
+    //console.log("Fetch records working");
+  }
+  console.log(query);
+  console.log(database);
   return (
     <View style={styles.container}>
       <View style={styles.textInputView}>
         <TextInput
-          placeholder={"Tap to enter query"}
+          placeholder={"Tap to enter SQL query"}
           keyboardType={"default"}
           width={"100%"}
           style={styles.textInput}
           multiline={true}
+          onChangeText={setquery}
         />
       </View>
       <View style={styles.title}>
@@ -39,17 +77,27 @@ export default function MainScreen({ navigation }) {
       <View style={styles.dbButtonView}>
         <View style={styles.dbButton}>
           <TouchableOpacity>
-            <Text style={styles.dbButtonText}>Amazon RDS</Text>
+            <Text
+              style={styles.dbButtonText}
+              onPress={() => setDatabase("RDS")}
+            >
+              Amazon RDS
+            </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.dbButton}>
           <TouchableOpacity>
-            <Text style={styles.dbButtonText}>Amazon Redshift</Text>
+            <Text
+              style={styles.dbButtonText}
+              onPress={() => setDatabase("Redshift")}
+            >
+              Amazon Redshift
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.button}>
-        <TouchableOpacity onPress={() => navigation.navigate("ResultScreen")}>
+        <TouchableOpacity onPress={fetch_results}>
           <Text style={styles.buttonText}>Fetch Records</Text>
         </TouchableOpacity>
       </View>
@@ -67,6 +115,9 @@ const styles = StyleSheet.create({
 
   textInputView: {
     flexWrap: "wrap",
+    borderColor: "#023047",
+    borderWidth: 5,
+    borderRadius: 20,
   },
 
   textInput: {
@@ -77,9 +128,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderRadius: 20,
+    //borderRadius: 20,
     flexWrap: "wrap",
-    borderWidth: 5,
+    //borderWidth: 5,
+    //borderColor: "023047",
   },
 
   title: {
