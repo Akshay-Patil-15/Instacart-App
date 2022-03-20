@@ -40,10 +40,10 @@ def setSession():
 
         if(database == 'RDS'):
             mydb = mysql.connector.connect(
-            host = "proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com", 
+            host = "proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com",
             user = "admin", 
             password = "rdsadminPASS", 
-            database = "proj1",
+            database = "proj1_db",
             )
             cursor = mydb.cursor()
             start_time = time.time()
