@@ -1,3 +1,6 @@
 {
-  "name": "InstaCart"
+  "name": "InstaCart",
+  "android": {
+    "package": "com.akshay15.instacart"
+  }
 }

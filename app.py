@@ -43,7 +43,7 @@ def setSession():
             host = "proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com", 
             user = "admin", 
             password = "rdsadminPASS", 
-            database = "proj1_db",
+            database = "proj1",
             )
             cursor = mydb.cursor()
             start_time = time.time()
