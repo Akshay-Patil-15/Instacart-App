@@ -29,11 +29,13 @@ export default function MainScreen({
   setTime,
 }) {
   const [database, setDatabase] = useState("");
-  const [query, setquery] = useState("");
+  const [query, setquery] = useState(``);
   //const [result, setResult] = useState([]);
+  //172.25.153.118 - RU Wireless Secure
+  //192.168.1.166. - Home
 
-  function fetch_results() {
-    fetch("https://54.163.139.54:5001/api/fetch_results", {
+  const fetch_results = () => {
+    return fetch("http://192.168.1.166:3000/api/fetch_results", {
       method: "POST",
       cache: "no-cache",
       headers: {
@@ -54,9 +56,12 @@ export default function MainScreen({
           //setUserID(user)
           //history.push('/auth/main');
         }
+      })
+      .catch((error) => {
+        console.error(error);
       });
     //console.log("Fetch records working");
-  }
+  };
   console.log(query);
   console.log(database);
   return (
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
 
   textInput: {
     padding: 20,
-    fontSize: 40,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#023047",
     justifyContent: "center",

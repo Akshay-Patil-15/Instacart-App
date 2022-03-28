@@ -53,24 +53,24 @@ export default function ResultScreen({ navigation, result, fields, time }) {
       <View style={styles.bannerContainer}>
         <ScrollView horizontal={true}>
           <View>
-            <Table borderStyle={{ borderWidth: 1, borderColor: "#C1C0B9" }}>
+            <Table borderStyle={{ borderWidth: 1, borderColor: "#fefae0" }}>
               <Row
                 data={fields}
                 style={styles.header}
-                textStyle={styles.text}
+                textStyle={styles.headertext}
               />
             </Table>
             <ScrollView style={styles.dataWrapper}>
-              <Table borderStyle={{ borderWidth: 1, borderColor: "#C1C0B9" }}>
+              <Table borderStyle={{ borderWidth: 3, borderColor: "#023047" }}>
                 {result.map((rowData, index) => (
                   <Row
                     key={index}
                     data={rowData}
                     style={[
                       styles.row,
-                      index % 2 && { backgroundColor: "#F7F6E7" },
+                      index % 2 && { backgroundColor: "#fefae0" },
                     ]}
-                    textStyle={styles.text}
+                    textStyle={styles.datatext}
                   />
                 ))}
               </Table>
@@ -143,10 +143,39 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  header: { height: 50, backgroundColor: "#537791" },
-  text: { textAlign: "center", fontWeight: "100" },
-  dataWrapper: { marginTop: -1 },
-  row: { height: 40, backgroundColor: "#E7E6E1" },
+  header: {
+    height: 50,
+    backgroundColor: "#023047",
+    //borderTopLeftRadius: 20,
+    //borderTopRightRadius: 20,
+  },
+
+  headertext: {
+    textAlign: "center",
+    //fontWeight: "100",
+    //fontSize: 14,
+    fontWeight: "bold",
+    color: "#fff",
+    //marginBottom: 5,
+  },
+
+  datatext: {
+    textAlign: "center",
+    //fontWeight: "100",
+    //fontSize: 14,
+    fontWeight: "bold",
+    color: "#023047",
+    //marginBottom: 5,
+  },
+
+  dataWrapper: {
+    marginTop: -1,
+  },
+
+  row: {
+    height: 40,
+    backgroundColor: "#bcb8b1",
+  },
 
   button: {
     width: "100%",

@@ -49,12 +49,12 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.titleText}>Database Systems for Data Science</Text>
       </View>
       <View style={styles.table}>
-        <Text style={styles.tableText}>Adithya Shrivastava - as6352</Text>
+        <Text style={styles.tableText}>Adithya Shrivastava - as3652</Text>
         <Text style={styles.tableText}>Aditya Atkari - aca132</Text>
         <Text style={styles.tableText}>Akshay Patil - avp119</Text>
-        <Text style={styles.tableText}>Jeffery Chen - jc2426</Text>
+        <Text style={styles.tableText}>Jeffrey Chen - jc2426</Text>
         <Text style={styles.tableText}>Mark Chen - mc2115</Text>
-        <Text style={styles.tableText}>Sanchit Thakur st976</Text>
+        <Text style={styles.tableText}>Sanchit Thakur - st976</Text>
       </View>
       <View style={styles.bannerContainer}>
         <Image
