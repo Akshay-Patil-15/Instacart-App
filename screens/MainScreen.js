@@ -29,26 +29,34 @@ export default function MainScreen({
   setTime,
 }) {
   const [database, setDatabase] = useState("");
+  const [databasetype, setDatabaseType] = useState("");
   const [query, setquery] = useState(``);
   //const [result, setResult] = useState([]);
   //172.25.153.118 - RU Wireless Secure
   //192.168.1.166. - Home
+  // 108.35.167.12 - Mac public IP address - Busch Student Center
+  // 34.235.89.161 - EC2
+  // 172.25.222.78 - RU Wireless Secure - College Ave Library
 
   const fetch_results = () => {
-    return fetch("http://192.168.1.166:3000/api/fetch_results", {
+    return fetch("http://172.25.222.78:3000/api/fetch_results", {
       method: "POST",
       cache: "no-cache",
       headers: {
         content_type: "application/json",
       },
-      body: JSON.stringify({ query: query, database: database }),
+      body: JSON.stringify({
+        query: query,
+        database: database,
+        databasetype: databasetype,
+      }),
     })
       .then((response) => {
         return response.json();
       })
       .then((json) => {
         if (json.status === "Done") {
-          console.log("Connected to Amazon RDS", json.result);
+          console.log("Connected", json.result);
           setResult(json.result);
           setFields(json.fields);
           setTime(json.time);
@@ -64,6 +72,7 @@ export default function MainScreen({
   };
   console.log(query);
   console.log(database);
+  console.log(databasetype);
   return (
     <View style={styles.container}>
       <View style={styles.textInputView}>
@@ -77,7 +86,7 @@ export default function MainScreen({
         />
       </View>
       <View style={styles.title}>
-        <Text style={styles.titleText}>Select a Database</Text>
+        <Text style={styles.titleText}>Select a Database System</Text>
       </View>
       <View style={styles.dbButtonView}>
         <View style={styles.dbButton}>
@@ -86,7 +95,7 @@ export default function MainScreen({
               style={styles.dbButtonText}
               onPress={() => setDatabase("RDS")}
             >
-              Amazon RDS
+              RDS
             </Text>
           </TouchableOpacity>
         </View>
@@ -96,7 +105,32 @@ export default function MainScreen({
               style={styles.dbButtonText}
               onPress={() => setDatabase("Redshift")}
             >
-              Amazon Redshift
+              Redshift
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>Select a Database</Text>
+      </View>
+      <View style={styles.dbTypeButtonView}>
+        <View style={styles.dbTypeButton}>
+          <TouchableOpacity>
+            <Text
+              style={styles.dbTypeButtonText}
+              onPress={() => setDatabaseType("InstaCart")}
+            >
+              InstaCart
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.dbTypeButton}>
+          <TouchableOpacity>
+            <Text
+              style={styles.dbTypeButtonText}
+              onPress={() => setDatabaseType("Challenger")}
+            >
+              Challenger
             </Text>
           </TouchableOpacity>
         </View>
@@ -144,38 +178,44 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 30,
   },
 
   titleText: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "bold",
     color: "#023047",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 10,
+    marginBottom: 5,
   },
 
   dbButtonView: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginTop: 20,
-    marginBottom: 30,
-    flex: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 100,
+    marginTop: 10,
+    //flex: 1,
   },
 
   dbButton: {
-    width: "40%",
-    height: "40%",
+    width: 160,
+    height: 80,
     backgroundColor: "#fb8500",
     padding: 16,
     borderRadius: 20,
     //position: "relative",
     //justifyContent: "center",
-    alignItems: "center",
     marginBottom: 10,
     //flexDirection: "row",
     //flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   dbButtonText: {
@@ -186,6 +226,44 @@ const styles = StyleSheet.create({
     //justifyContent: "center",
     //alignItems: "center",
     textAlign: "center",
+  },
+
+  dbTypeButtonView: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 10,
+    marginBottom: 10,
+    flex: 1,
+  },
+
+  dbTypeButton: {
+    width: 160,
+    height: 80,
+    backgroundColor: "#52b788",
+    padding: 16,
+    borderRadius: 20,
+    //position: "relative",
+    //justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+    //flexDirection: "row",
+    //flex: 1,
+  },
+
+  dbTypeButtonText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#fff",
+    //position: "relative",
+    //justifyContent: "center",
+    //alignItems: "center",
+    // flexDirection: "row",
+    // flexWrap: "wrap",
+    textAlign: "center",
+    marginTop: 10,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   button: {
