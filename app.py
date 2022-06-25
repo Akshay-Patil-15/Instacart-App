@@ -37,10 +37,10 @@ def setSession():
         #print(type(query))
         if(database == 'Redshift' and databasetype == 'InstaCart'):
             conn = redshift_connector.connect(
-            host = "redshift-cluster-1.c3owskjnuooc.us-east-1.redshift.amazonaws.com",
-            database = "dev",
-            user = "awsuser",
-            password = "F6ZDyprATZgWA29" 
+            host = "your_hostname",
+            database = "your_db_name",
+            user = "your_username",
+            password = "your_password" 
             )
 
             # conn1 = redshift_connector.connect(
@@ -73,10 +73,10 @@ def setSession():
 
         if(database == 'RDS' and databasetype == 'InstaCart'):
             mydb = mysql.connector.connect(
-            host = "proj1.cijjjogzpczd.us-east-1.rds.amazonaws.com",
-            user = "admin", 
-            password = "rdsadminPASS", 
-            database = "proj1_db",
+            host = "your_hostname",
+            user = "your_username", 
+            password = "your_password", 
+            database = "your_db_name",
             )
             cursor2 = mydb.cursor()
             start_time = time.time()
@@ -92,10 +92,10 @@ def setSession():
 
         if(database == 'Redshift' and databasetype == 'Challenger'):
             conn1 = redshift_connector.connect(
-            host = "redshift-cluster-2.c3owskjnuooc.us-east-1.redshift.amazonaws.com",
-            database = "dev",
-            user = "awsuser",
-            password = "Challenger123#" 
+            host = "your_hostname",
+            database = "your_db_name",
+            user = "your_username",
+            password = "your_password" 
             )
 
             # conn1 = redshift_connector.connect(
@@ -128,10 +128,10 @@ def setSession():
 
         if(database == 'RDS' and databasetype == 'Challenger'):
             mydb = mysql.connector.connect(
-            host = " challenger-db.cijjjogzpczd.us-east-1.rds.amazonaws.com",
-            user = "admin", 
-            password = "challenger123#", 
-            database = "challenger",
+            host = "your_hostname",
+            user = "your_username", 
+            password = "your_password", 
+            database = "your_db_name",
             )
             cursor4 = mydb.cursor()
             start_time = time.time()
